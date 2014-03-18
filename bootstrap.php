@@ -3,29 +3,34 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-define("SRC_PATH", './lib/');
+define('CONFIGEE_SOURCE_PATH', __DIR__ . '/src/');
 
 require_once('./vendor/autoload.php');
 
-function __class_autoload($class) {
 
-  $libSubdirectories = array('');
+spl_autoload_register(
+  function($class) {
 
-  if (!class_exists($class, false)) {
-    foreach ($libSubdirectories as $dir) {
-      if ($dir === '') {
-        $fileToLoad = LIB_PATH . '/' . $class;
-      }
-      else {
-        $fileToLoad = LIB_PATH . '/' . $dir . '/' . $class;
-      }
+    $srcSubdirectories = array('');
+
+    $parts = explode('\\', $class);
+    $class = end($parts);
+
+    if (!class_exists($class, false)) {
+      foreach ($srcSubdirectories as $dir) {
+        if ($dir === '') {
+          $fileToLoad = CONFIGEE_SOURCE_PATH . $class;
+        }
+        else {
+          $fileToLoad = CONFIGEE_SOURCE_PATH . $dir . '/' . $class;
+        }
 
 
-      if (is_readable($fileToLoad . '.php')) {
-        require_once($fileToLoad . '.php');
+        if (is_readable($fileToLoad . '.php')) {
+          require_once($fileToLoad . '.php');
+        }
       }
     }
   }
-}
+);
 
-spl_autoload_register('__class_autoload');
