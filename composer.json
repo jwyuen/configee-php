@@ -4,7 +4,8 @@
   "type": "library",
   "keywords": [
     "config",
-    "configuration"
+    "configuration",
+    "php"
   ],
   "license": "MIT License",
   "authors": [{
