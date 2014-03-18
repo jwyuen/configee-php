@@ -16,7 +16,7 @@ Just add to your composer.json like:
 ```json
 {
   "require": {
-    "jwyuen/configee-php": "dev-master"
+    "jwyuen/configee-php": "1.1"
   }
 }
 ``` 
