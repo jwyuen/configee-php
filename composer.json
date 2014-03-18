@@ -1,5 +1,5 @@
 {
-  "name": "jwyuen/configee-php"
+  "name": "jwyuen/configee-php",
   "description": "Configee: A dead simple config manager for php",
   "type": "library",
   "keywords": [
