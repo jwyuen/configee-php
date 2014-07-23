@@ -34,18 +34,22 @@ class Parser {
         $subElements = null;
 
         if (!is_dir($path)) {
-          $subConfig = 
-            $this->convertPHPFilePathToAssocArray($path, '/', $location);
-          $config = array_merge_recursive($config, $subConfig);
-        }
+          $fileParts = pathinfo($path);
+          if (isset($fileParts['extension']) 
+            && $fileParts['extension'] === 'php') {
+              
+              $subConfig = 
+              $this->convertPHPFilePathToAssocArray($path, '/', $location);
+              $config = array_merge_recursive($config, $subConfig);
+          }
+         }
         else {
           $subElements = array_diff(scandir($path), array('..', '.'));
           foreach ($subElements as $el) {
-            $newElementsToCheck[] = $element . '/' . $el;
+              $newElementsToCheck[] = $element . '/' . $el; 
           }
         }
-      }
-      
+      }      
       $elementsToCheck = $newElementsToCheck;
     }
 
@@ -64,7 +68,6 @@ class Parser {
     
     $result = array();
     $currentArray = array();
-
     for ($i = 0; $i < count($parts); $i++) {
 
       if ($i === 0 && !strpos($parts[$i], '.php')) {

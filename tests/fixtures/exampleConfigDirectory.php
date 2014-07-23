@@ -2,6 +2,7 @@
 
 return array(
   'general.php' => '<?php return array();',
+  'notAPhpFileOrFolder.md',
   'development' => array(
     'db.php' => '<?php return 
       array(
@@ -18,7 +19,9 @@ return array(
         "password" => "somepassword"
       );',
     'anotherfolder' => array(
-      'somefile.php' => '<?php return array();'
+      'somefile.php' => '<?php return array();',
+      'notaPhpFile.md' => '<?php return array();', 
+      'notaPhpFile.txt' => '<?php return array();' 
     )
   )
 );
